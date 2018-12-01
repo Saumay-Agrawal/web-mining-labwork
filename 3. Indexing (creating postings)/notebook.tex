@@ -1,0 +1,1063 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{3. Indexing}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    Saumay Agrawal
+
+16BCE1151
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{c+c1}{\PYZsh{} Importing necessary modules}
+        \PY{k+kn}{from} \PY{n+nn}{prettytable} \PY{k}{import} \PY{n}{PrettyTable}
+        \PY{k+kn}{import} \PY{n+nn}{requests}
+        \PY{k+kn}{from} \PY{n+nn}{bs4} \PY{k}{import} \PY{n}{BeautifulSoup}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{c+c1}{\PYZsh{} Preprocessing a list of words of a document}
+        \PY{k}{def} \PY{n+nf}{preprocess}\PY{p}{(}\PY{n}{words}\PY{p}{)}\PY{p}{:}
+            \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{words}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                \PY{n}{word} \PY{o}{=} \PY{n}{words}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{.}\PY{n}{strip}\PY{p}{(}\PY{p}{)}
+                \PY{k}{if} \PY{o+ow}{not} \PY{n}{word}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{isalnum}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+                    \PY{n}{word} \PY{o}{=} \PY{n}{word}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{:}\PY{p}{]}
+                \PY{k}{if} \PY{o+ow}{not} \PY{n}{word}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{isalnum}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+                    \PY{n}{word} \PY{o}{=} \PY{n}{word}\PY{p}{[}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}
+                \PY{n}{words}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{word}\PY{o}{.}\PY{n}{lower}\PY{p}{(}\PY{p}{)}
+            \PY{k}{return} \PY{n}{words}
+        
+        \PY{c+c1}{\PYZsh{} Get the offsets of a word in a list of words}
+        \PY{k}{def} \PY{n+nf}{getoffsets}\PY{p}{(}\PY{n}{words}\PY{p}{,} \PY{n}{word}\PY{p}{)}\PY{p}{:}
+            \PY{n}{offsets} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+            \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{words}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                \PY{k}{if} \PY{n}{words}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{==}\PY{n}{word}\PY{p}{:}
+                    \PY{n}{offsets}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{i}\PY{p}{)}
+            \PY{k}{return} \PY{n}{offsets}
+        
+        \PY{c+c1}{\PYZsh{} Create index of passed document \PYZsq{}doc\PYZsq{} based on its \PYZsq{}doc\PYZus{}id\PYZsq{}}
+        \PY{k}{def} \PY{n+nf}{createindex}\PY{p}{(}\PY{n}{doc}\PY{p}{,} \PY{n}{doc\PYZus{}id}\PY{p}{)}\PY{p}{:}
+            \PY{n}{words} \PY{o}{=} \PY{n}{doc}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ }\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+            \PY{n}{words} \PY{o}{=} \PY{p}{[}\PY{n}{word} \PY{k}{for} \PY{n}{word} \PY{o+ow}{in} \PY{n}{words} \PY{k}{if} \PY{n}{word}\PY{o}{!=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+            \PY{n}{words} \PY{o}{=} \PY{n}{preprocess}\PY{p}{(}\PY{n}{words}\PY{p}{)}
+            \PY{n}{index} \PY{o}{=} \PY{p}{\PYZob{}}\PY{p}{\PYZcb{}}
+            \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{set}\PY{p}{(}\PY{n}{words}\PY{p}{)}\PY{p}{:}
+                \PY{n}{offsets} \PY{o}{=} \PY{n}{getoffsets}\PY{p}{(}\PY{n}{words}\PY{p}{,} \PY{n}{i}\PY{p}{)}
+                \PY{n}{postings} \PY{o}{=} \PY{p}{[}\PY{n}{doc\PYZus{}id}\PY{p}{,} \PY{n}{offsets}\PY{p}{]}
+                \PY{n}{index}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{p}{[}\PY{n}{words}\PY{o}{.}\PY{n}{count}\PY{p}{(}\PY{n}{i}\PY{p}{)}\PY{p}{,} \PY{p}{[}\PY{n}{postings}\PY{p}{]}\PY{p}{]}
+            \PY{k}{return} \PY{n}{index}
+        
+        \PY{c+c1}{\PYZsh{} Merge the doc\PYZus{}index and index}
+        \PY{k}{def} \PY{n+nf}{appendindex}\PY{p}{(}\PY{n}{doc\PYZus{}index}\PY{p}{,} \PY{n}{index}\PY{p}{)}\PY{p}{:}
+            \PY{k}{for} \PY{n}{key} \PY{o+ow}{in} \PY{n}{doc\PYZus{}index}\PY{o}{.}\PY{n}{keys}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+                \PY{k}{if} \PY{n}{key} \PY{o+ow}{in} \PY{n}{index}\PY{o}{.}\PY{n}{keys}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+                    \PY{n}{index}\PY{p}{[}\PY{n}{key}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{+}\PY{o}{=} \PY{n}{doc\PYZus{}index}\PY{p}{[}\PY{n}{key}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+                    \PY{n}{index}\PY{p}{[}\PY{n}{key}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{+}\PY{o}{=} \PY{n}{doc\PYZus{}index}\PY{p}{[}\PY{n}{key}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+                \PY{k}{else}\PY{p}{:}
+                    \PY{n}{index}\PY{p}{[}\PY{n}{key}\PY{p}{]} \PY{o}{=} \PY{n}{doc\PYZus{}index}\PY{p}{[}\PY{n}{key}\PY{p}{]}
+            \PY{k}{return} \PY{n}{index}
+        
+        \PY{c+c1}{\PYZsh{} Print the index in tabular format}
+        \PY{k}{def} \PY{n+nf}{printindex}\PY{p}{(}\PY{n}{index}\PY{p}{)}\PY{p}{:}
+            \PY{n}{table} \PY{o}{=} \PY{n}{PrettyTable}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Word}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Frequency}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Postings}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+            \PY{k}{for} \PY{n}{word} \PY{o+ow}{in} \PY{n+nb}{sorted}\PY{p}{(}\PY{n}{index}\PY{o}{.}\PY{n}{keys}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                \PY{n}{frequency}\PY{p}{,} \PY{n}{postings} \PY{o}{=} \PY{n}{index}\PY{p}{[}\PY{n}{word}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{index}\PY{p}{[}\PY{n}{word}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+                \PY{n}{table}\PY{o}{.}\PY{n}{add\PYZus{}row}\PY{p}{(}\PY{p}{[}\PY{n}{word}\PY{p}{,} \PY{n}{frequency}\PY{p}{,} \PY{n}{postings}\PY{p}{]}\PY{p}{)}
+            \PY{n+nb}{print}\PY{p}{(}\PY{n}{table}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{c+c1}{\PYZsh{} Create the index of sample input files}
+        \PY{n}{index} \PY{o}{=} \PY{p}{\PYZob{}}\PY{p}{\PYZcb{}}
+        \PY{n}{files} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{input1.txt}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{input2.txt}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{input3.txt}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+        \PY{n}{doc\PYZus{}id} \PY{o}{=} \PY{l+m+mi}{0}
+        \PY{k}{for} \PY{n}{file} \PY{o+ow}{in} \PY{n}{files}\PY{p}{:}
+            \PY{n}{doc\PYZus{}id} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+            \PY{n}{content} \PY{o}{=} \PY{k+kc}{None}
+            \PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{n}{file}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{k}{as} \PY{n}{content\PYZus{}file}\PY{p}{:}
+                \PY{n}{content} \PY{o}{=} \PY{n}{content\PYZus{}file}\PY{o}{.}\PY{n}{read}\PY{p}{(}\PY{p}{)}
+            \PY{n}{doc\PYZus{}index} \PY{o}{=} \PY{n}{createindex}\PY{p}{(}\PY{n}{content}\PY{p}{,} \PY{n}{doc\PYZus{}id}\PY{p}{)}
+            \PY{n}{index} \PY{o}{=} \PY{n}{appendindex}\PY{p}{(}\PY{n}{doc\PYZus{}index}\PY{p}{,} \PY{n}{index}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{n}{printindex}\PY{p}{(}\PY{n}{index}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
++--------------+-----------+---------------------------------+
+|     Word     | Frequency |             Postings            |
++--------------+-----------+---------------------------------+
+|     and      |     1     |            [[2, [8]]]           |
+|    black     |     3     | [[1, [3]], [2, [11]], [3, [0]]] |
+|     cash     |     1     |            [[2, [1]]]           |
+|  corruption  |     1     |            [[1, [0]]]           |
+|   creation   |     1     |            [[2, [9]]]           |
+|   currency   |     1     |            [[3, [8]]]           |
+| denomination |     1     |            [[3, [7]]]           |
+|  excessive   |     1     |            [[2, [0]]]           |
+|  generation  |     1     |            [[1, [5]]]           |
+|     high     |     1     |            [[3, [6]]]           |
+|      in      |     3     |  [[1, [2]], [2, [4]], [3, [5]]] |
+|      is      |     1     |            [[3, [2]]]           |
+|    money     |     3     | [[1, [4]], [2, [12]], [3, [1]]] |
+| non-payment  |     1     |            [[2, [5]]]           |
+|      of      |     2     |          [[2, [6, 10]]]         |
+|    result    |     1     |            [[2, [3]]]           |
+|   results    |     1     |            [[1, [1]]]           |
+|    stored    |     1     |            [[3, [4]]]           |
+|     tax      |     1     |            [[2, [7]]]           |
+| transactions |     1     |            [[2, [2]]]           |
+|   usually    |     1     |            [[3, [3]]]           |
++--------------+-----------+---------------------------------+
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{c+c1}{\PYZsh{} Create the index of four of Robert Frost\PYZsq{}s poems}
+        \PY{n}{index} \PY{o}{=} \PY{p}{\PYZob{}}\PY{p}{\PYZcb{}}
+        \PY{n}{links} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{https://www.poemhunter.com/poem/the\PYZhy{}road\PYZhy{}not\PYZhy{}taken/}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{https://www.poemhunter.com/poem/stopping\PYZhy{}by\PYZhy{}woods\PYZhy{}on\PYZhy{}a\PYZhy{}snowy\PYZhy{}evening\PYZhy{}2/}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{https://www.poemhunter.com/poem/nothing\PYZhy{}gold\PYZhy{}can\PYZhy{}stay/}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{https://www.poemhunter.com/poem/a\PYZhy{}question/}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{k}{for} \PY{n+nb}{id} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{links}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+            \PY{n}{link} \PY{o}{=} \PY{n}{links}\PY{p}{[}\PY{n+nb}{id}\PY{p}{]}
+            \PY{n}{response} \PY{o}{=} \PY{n}{requests}\PY{o}{.}\PY{n}{get}\PY{p}{(}\PY{n}{link}\PY{p}{)}
+            \PY{n}{soup} \PY{o}{=} \PY{n}{BeautifulSoup}\PY{p}{(}\PY{n}{response}\PY{o}{.}\PY{n}{content}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{html.parser}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+            \PY{n}{poem} \PY{o}{=} \PY{n+nb}{str}\PY{p}{(}\PY{n}{soup}\PY{o}{.}\PY{n}{find\PYZus{}all}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{p}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+            \PY{n}{poem} \PY{o}{=} \PY{n}{poem}\PY{p}{[}\PY{l+m+mi}{4}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{4}\PY{p}{]}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZlt{}br/\PYZgt{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ }\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{strip}\PY{p}{(}\PY{p}{)}
+            \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Parsed poem \PYZsh{}}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{:}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n+nb}{id}\PY{p}{,} \PY{n}{poem}\PY{p}{)}\PY{p}{)}
+            \PY{n}{poem\PYZus{}index} \PY{o}{=} \PY{n}{createindex}\PY{p}{(}\PY{n}{poem}\PY{p}{,} \PY{n+nb}{id}\PY{p}{)}
+            \PY{n}{index} \PY{o}{=} \PY{n}{appendindex}\PY{p}{(}\PY{n}{poem\PYZus{}index}\PY{p}{,} \PY{n}{index}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Parsed poem \#0:
+Two roads diverged in a yellow wood, And sorry I could not travel both And be one traveler, long I stood And looked down one as far as I could To where it bent in the undergrowth;   Then took the other, as just as fair, And having perhaps the better claim Because it was grassy and wanted wear, Though as for that the passing there Had worn them really about the same,  And both that morning equally lay In leaves no step had trodden black. Oh, I kept the first for another day!  Yet knowing how way leads on to way I doubted if I should ever come back.  I shall be telling this with a sigh Somewhere ages and ages hence: Two roads diverged in a wood, and I, I took the one less traveled by, And that has made all the difference.
+
+Parsed poem \#1:
+Whose woods these are I think I know. His house is in the village, though;  He will not see me stopping here To watch his woods fill up with snow.  My little horse must think it queer To stop without a farmhouse near Between the woods and frozen lake The darkest evening of the year.  He gives his harness bells a shake To ask if there is some mistake. The only other sound's the sweep Of easy wind and downy flake.  The woods are lovely, dark and deep, But I have promises to keep, And miles to go before I sleep, And miles to go before I sleep.
+
+Parsed poem \#2:
+Nature's first green is gold, Her hardest hue to hold. Her early leaf's a flower;  But only so an hour. Then leaf subsides to leaf, So Eden sank to grief, So dawn goes down to day Nothing gold can stay.
+
+Parsed poem \#3:
+A voice said, Look me in the stars And tell me truly, men of earth, If all the soul-and-body scars Were not too much to pay for birth.
+
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{k}{for} \PY{n}{word} \PY{o+ow}{in} \PY{n+nb}{sorted}\PY{p}{(}\PY{n}{index}\PY{o}{.}\PY{n}{keys}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+            \PY{n}{freq}\PY{p}{,} \PY{n}{postings} \PY{o}{=} \PY{n}{index}\PY{p}{[}\PY{n}{word}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{index}\PY{p}{[}\PY{n}{word}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+            \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{: }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{word}\PY{p}{,} \PY{n}{freq}\PY{p}{)}\PY{p}{)}
+            \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n}{postings}\PY{p}{:}
+                \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{i}\PY{p}{)}\PY{p}{)}
+            \PY{n+nb}{print}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+a: 7
+	[0, [4, 115, 126]]
+	[1, [40, 60]]
+	[2, [13]]
+	[3, [0]]
+
+about: 1
+	[0, [69]]
+
+ages: 2
+	[0, [118, 120]]
+
+all: 2
+	[0, [141]]
+	[3, [16]]
+
+an: 1
+	[2, [18]]
+
+and: 15
+	[0, [7, 14, 21, 45, 55, 72, 119, 128, 137]]
+	[1, [46, 78, 86, 94, 101]]
+	[3, [8]]
+
+another: 1
+	[0, [91]]
+
+are: 2
+	[1, [3, 83]]
+
+as: 5
+	[0, [25, 27, 41, 43, 59]]
+
+ask: 1
+	[1, [63]]
+
+back: 1
+	[0, [108]]
+
+be: 2
+	[0, [15, 111]]
+
+because: 1
+	[0, [51]]
+
+before: 2
+	[1, [98, 105]]
+
+bells: 1
+	[1, [59]]
+
+bent: 1
+	[0, [33]]
+
+better: 1
+	[0, [49]]
+
+between: 1
+	[1, [43]]
+
+birth: 1
+	[3, [27]]
+
+black: 1
+	[0, [84]]
+
+both: 2
+	[0, [13, 73]]
+
+but: 2
+	[1, [88]]
+	[2, [15]]
+
+by: 1
+	[0, [136]]
+
+can: 1
+	[2, [38]]
+
+claim: 1
+	[0, [50]]
+
+come: 1
+	[0, [107]]
+
+could: 2
+	[0, [10, 29]]
+
+dark: 1
+	[1, [85]]
+
+darkest: 1
+	[1, [50]]
+
+dawn: 1
+	[2, [31]]
+
+day: 2
+	[0, [92]]
+	[2, [35]]
+
+deep: 1
+	[1, [87]]
+
+difference: 1
+	[0, [143]]
+
+diverged: 2
+	[0, [2, 124]]
+
+doubted: 1
+	[0, [102]]
+
+down: 2
+	[0, [23]]
+	[2, [33]]
+
+downy: 1
+	[1, [79]]
+
+early: 1
+	[2, [11]]
+
+earth: 1
+	[3, [14]]
+
+easy: 1
+	[1, [76]]
+
+eden: 1
+	[2, [26]]
+
+equally: 1
+	[0, [76]]
+
+evening: 1
+	[1, [51]]
+
+ever: 1
+	[0, [106]]
+
+fair: 1
+	[0, [44]]
+
+far: 1
+	[0, [26]]
+
+farmhouse: 1
+	[1, [41]]
+
+fill: 1
+	[1, [26]]
+
+first: 2
+	[0, [89]]
+	[2, [1]]
+
+flake: 1
+	[1, [80]]
+
+flower: 1
+	[2, [14]]
+
+for: 3
+	[0, [60, 90]]
+	[3, [26]]
+
+frozen: 1
+	[1, [47]]
+
+gives: 1
+	[1, [56]]
+
+go: 2
+	[1, [97, 104]]
+
+goes: 1
+	[2, [32]]
+
+gold: 2
+	[2, [4, 37]]
+
+grassy: 1
+	[0, [54]]
+
+green: 1
+	[2, [2]]
+
+grief: 1
+	[2, [29]]
+
+had: 2
+	[0, [65, 82]]
+
+hardest: 1
+	[2, [6]]
+
+harness: 1
+	[1, [58]]
+
+has: 1
+	[0, [139]]
+
+have: 1
+	[1, [90]]
+
+having: 1
+	[0, [46]]
+
+he: 2
+	[1, [15, 55]]
+
+hence: 1
+	[0, [121]]
+
+her: 2
+	[2, [5, 10]]
+
+here: 1
+	[1, [21]]
+
+his: 3
+	[1, [8, 24, 57]]
+
+hold: 1
+	[2, [9]]
+
+horse: 1
+	[1, [32]]
+
+hour: 1
+	[2, [19]]
+
+house: 1
+	[1, [9]]
+
+how: 1
+	[0, [95]]
+
+hue: 1
+	[2, [7]]
+
+i: 14
+	[0, [9, 19, 28, 86, 101, 104, 109, 129, 130]]
+	[1, [4, 6, 89, 99, 106]]
+
+if: 3
+	[0, [103]]
+	[1, [64]]
+	[3, [15]]
+
+in: 6
+	[0, [3, 34, 78, 125]]
+	[1, [11]]
+	[3, [5]]
+
+is: 3
+	[1, [10, 66]]
+	[2, [3]]
+
+it: 3
+	[0, [32, 52]]
+	[1, [35]]
+
+just: 1
+	[0, [42]]
+
+keep: 1
+	[1, [93]]
+
+kept: 1
+	[0, [87]]
+
+know: 1
+	[1, [7]]
+
+knowing: 1
+	[0, [94]]
+
+lake: 1
+	[1, [48]]
+
+lay: 1
+	[0, [77]]
+
+leads: 1
+	[0, [97]]
+
+leaf: 2
+	[2, [21, 24]]
+
+leaf's: 1
+	[2, [12]]
+
+leaves: 1
+	[0, [79]]
+
+less: 1
+	[0, [134]]
+
+little: 1
+	[1, [31]]
+
+long: 1
+	[0, [18]]
+
+look: 1
+	[3, [3]]
+
+looked: 1
+	[0, [22]]
+
+lovely: 1
+	[1, [84]]
+
+made: 1
+	[0, [140]]
+
+me: 3
+	[1, [19]]
+	[3, [4, 10]]
+
+men: 1
+	[3, [12]]
+
+miles: 2
+	[1, [95, 102]]
+
+mistake: 1
+	[1, [68]]
+
+morning: 1
+	[0, [75]]
+
+much: 1
+	[3, [23]]
+
+must: 1
+	[1, [33]]
+
+my: 1
+	[1, [30]]
+
+nature's: 1
+	[2, [0]]
+
+near: 1
+	[1, [42]]
+
+no: 1
+	[0, [80]]
+
+not: 3
+	[0, [11]]
+	[1, [17]]
+	[3, [21]]
+
+nothing: 1
+	[2, [36]]
+
+of: 3
+	[1, [52, 75]]
+	[3, [13]]
+
+oh: 1
+	[0, [85]]
+
+on: 1
+	[0, [98]]
+
+one: 3
+	[0, [16, 24, 133]]
+
+only: 2
+	[1, [70]]
+	[2, [16]]
+
+other: 2
+	[0, [40]]
+	[1, [71]]
+
+passing: 1
+	[0, [63]]
+
+pay: 1
+	[3, [25]]
+
+perhaps: 1
+	[0, [47]]
+
+promises: 1
+	[1, [91]]
+
+queer: 1
+	[1, [36]]
+
+really: 1
+	[0, [68]]
+
+roads: 2
+	[0, [1, 123]]
+
+said: 1
+	[3, [2]]
+
+same: 1
+	[0, [71]]
+
+sank: 1
+	[2, [27]]
+
+scars: 1
+	[3, [19]]
+
+see: 1
+	[1, [18]]
+
+shake: 1
+	[1, [61]]
+
+shall: 1
+	[0, [110]]
+
+should: 1
+	[0, [105]]
+
+sigh: 1
+	[0, [116]]
+
+sleep: 2
+	[1, [100, 107]]
+
+snow: 1
+	[1, [29]]
+
+so: 3
+	[2, [17, 25, 30]]
+
+some: 1
+	[1, [67]]
+
+somewhere: 1
+	[0, [117]]
+
+sorry: 1
+	[0, [8]]
+
+soul-and-body: 1
+	[3, [18]]
+
+sound's: 1
+	[1, [72]]
+
+stars: 1
+	[3, [7]]
+
+stay: 1
+	[2, [39]]
+
+step: 1
+	[0, [81]]
+
+stood: 1
+	[0, [20]]
+
+stop: 1
+	[1, [38]]
+
+stopping: 1
+	[1, [20]]
+
+subsides: 1
+	[2, [22]]
+
+sweep: 1
+	[1, [74]]
+
+tell: 1
+	[3, [9]]
+
+telling: 1
+	[0, [112]]
+
+that: 3
+	[0, [61, 74, 138]]
+
+the: 17
+	[0, [35, 39, 48, 62, 70, 88, 132, 142]]
+	[1, [12, 44, 49, 53, 69, 73, 81]]
+	[3, [6, 17]]
+
+them: 1
+	[0, [67]]
+
+then: 2
+	[0, [37]]
+	[2, [20]]
+
+there: 2
+	[0, [64]]
+	[1, [65]]
+
+these: 1
+	[1, [2]]
+
+think: 2
+	[1, [5, 34]]
+
+this: 1
+	[0, [113]]
+
+though: 2
+	[0, [58]]
+	[1, [14]]
+
+to: 13
+	[0, [30, 99]]
+	[1, [22, 37, 62, 92, 96, 103]]
+	[2, [8, 23, 28, 34]]
+	[3, [24]]
+
+too: 1
+	[3, [22]]
+
+took: 2
+	[0, [38, 131]]
+
+travel: 1
+	[0, [12]]
+
+traveled: 1
+	[0, [135]]
+
+traveler: 1
+	[0, [17]]
+
+trodden: 1
+	[0, [83]]
+
+truly: 1
+	[3, [11]]
+
+two: 2
+	[0, [0, 122]]
+
+undergrowth: 1
+	[0, [36]]
+
+up: 1
+	[1, [27]]
+
+village: 1
+	[1, [13]]
+
+voice: 1
+	[3, [1]]
+
+wanted: 1
+	[0, [56]]
+
+was: 1
+	[0, [53]]
+
+watch: 1
+	[1, [23]]
+
+way: 2
+	[0, [96, 100]]
+
+wear: 1
+	[0, [57]]
+
+were: 1
+	[3, [20]]
+
+where: 1
+	[0, [31]]
+
+whose: 1
+	[1, [0]]
+
+will: 1
+	[1, [16]]
+
+wind: 1
+	[1, [77]]
+
+with: 2
+	[0, [114]]
+	[1, [28]]
+
+without: 1
+	[1, [39]]
+
+wood: 2
+	[0, [6, 127]]
+
+woods: 4
+	[1, [1, 25, 45, 82]]
+
+worn: 1
+	[0, [66]]
+
+year: 1
+	[1, [54]]
+
+yellow: 1
+	[0, [5]]
+
+yet: 1
+	[0, [93]]
+
+
+    \end{Verbatim}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
