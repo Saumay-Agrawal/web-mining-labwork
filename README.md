@@ -1,2 +1,2 @@
 # web-mining-labwork
-This repository contains the code solutions the lab assignments for the course web mining.
+This repository contains the solution files for the lab assignments of the course web mining.
